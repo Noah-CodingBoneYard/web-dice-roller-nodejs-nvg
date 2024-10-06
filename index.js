@@ -16,6 +16,18 @@ app.use(cors({ origin: '*' }))
 
 // The app.get functions below are being processed in Node.js running on the server.
 // Implement a custom About page.
+
+// rolling dice, return random value between 1-6 on 5 dice
+app.get('/d6', (request, response) => {
+    console.log('Calling "/d6" on the Node.js server.')
+    response.type('text/plain')
+    const dice = [];
+    for(let i=0;i<5;i++) {
+        dice.push(Math.floor(Math.random()*6)+1);
+    }
+    response.send({dice})
+})
+
 app.get('/about', (request, response) => {
 	console.log('Calling "/about" on the Node.js server.')
 	response.type('text/plain')
